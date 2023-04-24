@@ -240,7 +240,28 @@ async def start(client, message):
                     continue
             await asyncio.sleep(1) 
         return await sts.delete()
-        
+       
+    elif data.split("-", 1)[0] == "XD":
+        xd = await message.reply_text("Please Wait...")
+        file_id = data.split("-", 1)[1]
+        try:
+            files_ = await get_file_details(file_id)
+            if not files_:
+                await xd.edit(text="❗️ Error: File not found.")
+                return
+            file = files_[0]
+            name = file.file_name
+            size = get_size(file.file_size)
+            buttons = [[
+                InlineKeyboardButton('Ok,Get File📩', url=f"https://telegram.dog/{temp.U_NAME}?start=files_{file_id}"))
+            ]]
+            await xd.edit(
+                text=f"<b>-ғɪʟᴇ ᴅᴇᴛᴀɪʟs-</b>\n\n•ғɪʟᴇ ɴᴀᴍᴇ - <code>{name}</code>\n•ғɪʟᴇ sɪᴢᴇ - <code>{size}<code/>\n\n•ഈ ഫയൽ 10 മിനിറ്റ് കഴിയുമ്പോൾ ഓട്ടോമാറ്റിക് ആയി ഡെലീറ്റ് ആയി പോകും അതിനാൽ മറ്റ്‌വിടെയെങ്കിലും ഫോർവേർഡ് ചെയ്ത ശേഷം ഡൗൺലോഡ് ചെയ്യുക",
+                reply_markup=InlineKeyboardMarkup(buttons)
+            ) 
+        except Exception as e:
+            logger.exception(e)
+        return
 
     files_ = await get_file_details(file_id)           
     if not files_:
