@@ -253,7 +253,7 @@ async def start(client, message):
             name = file.file_name
             size = get_size(file.file_size)
             buttons = [[
-                InlineKeyboardButton('Ok,Get File📩', url=f"https://telegram.dog/{temp.U_NAME}?start=files_{file_id}")
+                InlineKeyboardButton('Ok,Get File📩', url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")
             ]]
             await xd.edit(
                 text=f"<b>-ғɪʟᴇ ᴅᴇᴛᴀɪʟs-</b>\n\n•ғɪʟᴇ ɴᴀᴍᴇ - <code>{name}</code>\n•ғɪʟᴇ sɪᴢᴇ - <code>{size}<code/>\n\n•ഈ ഫയൽ 10 മിനിറ്റ് കഴിയുമ്പോൾ ഓട്ടോമാറ്റിക് ആയി ഡെലീറ്റ് ആയി പോകും അതിനാൽ മറ്റ്‌വിടെയെങ്കിലും ഫോർവേർഡ് ചെയ്ത ശേഷം ഡൗൺലോഡ് ചെയ്യുക",
